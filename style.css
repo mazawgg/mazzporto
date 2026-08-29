@@ -480,12 +480,15 @@ section {
     margin-top: var(--spacing-md);
 }
 
+/* === PERBAIKAN DI SINI === */
 .project-card {
     background-color: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 15px;
-    overflow: visible;
-    min-height: 500px;
+    overflow: hidden; /* Mengunci agar gambar tdk tumpah ke luar card */
+    height: 100%; /* Agar semua card di row yg sama sejajar tingginya */
+    display: flex;
+    flex-direction: column;
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
@@ -498,6 +501,7 @@ section {
     position: relative;
     width: 100%;
     height: 220px;
+    flex-shrink: 0; /* Agar area gambar tidak terkompres saat card memendek */
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     display: flex;
     align-items: center;
@@ -505,9 +509,10 @@ section {
     border-bottom: 1px solid var(--border);
 }
 
+/* === PERBAIKAN DI SINI === */
 .project-image img {
     width: 100%;
-    height: auto;
+    height: 100%; /* Mengikuti height 220px dari kontainer .project-image */
     display: block;
     object-fit: cover;
 }
@@ -538,6 +543,9 @@ section {
 
 .project-content {
     padding: var(--spacing-md);
+    flex-grow: 1; /* Mendorong konten jika card bertambah tinggi secara merata */
+    display: flex;
+    flex-direction: column;
 }
 
 .project-title {
@@ -557,6 +565,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
+    margin-top: auto; /* Memastikan tag teknologi tetap menempel di bawah walau deskripsi pendek */
 }
 
 .project-link {
@@ -619,10 +628,6 @@ section {
     color: var(--text-primary);
     text-decoration: none;
     transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
-    -webkit-transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
-    -moz-transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
-    -ms-transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
-    -o-transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
 }
 
 .social-link:hover {
@@ -776,7 +781,7 @@ textarea.form-input {
     }
     
    .fade-in-section {
-        opacity: 1 !important;  /* ← Mulai dari 0.3 (ga sepenuhnya putih) */
+        opacity: 1 !important; 
         transform: translateY(30px);
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
