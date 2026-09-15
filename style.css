@@ -1,9 +1,27 @@
 /* ============================================
    CSS Variables & Reset
    ============================================ */
-*, *::before, *::after {
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('fonts/Quicksand-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('fonts/Quicksand-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
+
 :root {
     /* Light Theme Colors */
     --bg-primary: #FFFFFF;
@@ -14,17 +32,17 @@
     --border: #E0E0E0;
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-hover: rgba(0, 0, 0, 0.15);
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
-    
+
     /* Typography */
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    
+    --font-primary: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-medium: 0.3s ease;
@@ -266,10 +284,13 @@ body {
 }
 
 @keyframes scrollAnimation {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     50% {
         opacity: 1;
         transform: translateY(0);
@@ -301,6 +322,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -485,8 +507,10 @@ section {
     background-color: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 15px;
-    overflow: hidden; /* Mengunci agar gambar tdk tumpah ke luar card */
-    height: 100%; /* Agar semua card di row yg sama sejajar tingginya */
+    overflow: hidden;
+    /* Mengunci agar gambar tdk tumpah ke luar card */
+    height: 100%;
+    /* Agar semua card di row yg sama sejajar tingginya */
     display: flex;
     flex-direction: column;
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
@@ -501,7 +525,8 @@ section {
     position: relative;
     width: 100%;
     height: 220px;
-    flex-shrink: 0; /* Agar area gambar tidak terkompres saat card memendek */
+    flex-shrink: 0;
+    /* Agar area gambar tidak terkompres saat card memendek */
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     display: flex;
     align-items: center;
@@ -512,7 +537,8 @@ section {
 /* === PERBAIKAN DI SINI === */
 .project-image img {
     width: 100%;
-    height: 100%; /* Mengikuti height 220px dari kontainer .project-image */
+    height: 100%;
+    /* Mengikuti height 220px dari kontainer .project-image */
     display: block;
     object-fit: cover;
 }
@@ -543,7 +569,8 @@ section {
 
 .project-content {
     padding: var(--spacing-md);
-    flex-grow: 1; /* Mendorong konten jika card bertambah tinggi secara merata */
+    flex-grow: 1;
+    /* Mendorong konten jika card bertambah tinggi secara merata */
     display: flex;
     flex-direction: column;
 }
@@ -565,7 +592,8 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
-    margin-top: auto; /* Memastikan tag teknologi tetap menempel di bawah walau deskripsi pendek */
+    margin-top: auto;
+    /* Memastikan tag teknologi tetap menempel di bawah walau deskripsi pendek */
 }
 
 .project-link {
@@ -690,7 +718,7 @@ textarea.form-input {
     color: var(--bg-primary);
     border: none;
     border-radius: 8px;
-    font-weight: 600;
+    font-family: var(--font-primary);
     font-size: 1rem;
     cursor: pointer;
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
@@ -708,7 +736,7 @@ textarea.form-input {
 .footer {
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border);
-    padding: var(--spacing-lg) 0;
+    padding: 30px 60px;
 }
 
 .footer-content {
@@ -717,19 +745,27 @@ textarea.form-input {
 
 .footer-text {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-xs);
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.footer-separator {
+    margin: 0 10px;
+    color: var(--text-secondary);
+    opacity: 0.7;
 }
 
 .footer-subtext {
     color: var(--text-secondary);
     font-size: 0.9rem;
+    display: inline-block;
 }
 
 /* ============================================
    Responsive Design
    ============================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-menu {
         position: fixed;
         top: 70px;
@@ -745,72 +781,86 @@ textarea.form-input {
         transition: transform var(--transition-medium), opacity var(--transition-medium);
         pointer-events: none;
     }
-    
+
     .nav-menu.active {
         transform: translateY(0);
         opacity: 1;
         pointer-events: all;
     }
-    
+
     .mobile-menu-toggle {
         display: flex;
     }
-    
+
     .mobile-menu-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(7px, 7px);
     }
-    
+
     .mobile-menu-toggle.active span:nth-child(2) {
         opacity: 0;
     }
-    
+
     .mobile-menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px);
     }
-    
+
     .hero {
         padding: var(--spacing-md);
     }
-    
+
     .about-stats {
         grid-template-columns: 1fr;
     }
-    
+
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    
-   .fade-in-section {
-        opacity: 1 !important; 
+
+    .fade-in-section {
+        opacity: 1 !important;
         transform: translateY(30px);
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    
+
     .fade-in-section.visible {
         opacity: 1 !important;
         transform: translateY(0);
     }
-    
+
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         padding: 15px;
     }
-    
+
     .project-card {
         opacity: 0.3 !important;
     }
-    
+
     .project-card.visible {
         opacity: 1 !important;
     }
-    
+
     .contact-content {
         grid-template-columns: 1fr;
     }
-    
+
     .nav-container {
         padding: 1rem;
+    }
+
+    .footer {
+        padding: 20px 30px;
+        text-align: center;
+    }
+
+    .footer-separator {
+        display: none;
+    }
+
+    .footer-subtext {
+        display: block;
+        margin-top: 4px;
     }
 }
 
@@ -819,7 +869,7 @@ textarea.form-input {
         --spacing-lg: 3rem;
         --spacing-xl: 4rem;
     }
-    
+
     section {
         padding: var(--spacing-lg) 0;
     }
