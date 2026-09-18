@@ -311,3 +311,80 @@ const yearSpan = document.getElementById('year');
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
+
+// ============================================
+// Back to Top Button Functionality (Goyang-goyang Ajib 🕺)
+// ============================================
+
+// 1. Buat elemen tombol secara dinamis
+const backToTopBtn = document.createElement('button');
+backToTopBtn.id = 'backToTopBtn';
+backToTopBtn.innerHTML = `<i class="fa-solid fa-arrow-up-long"></i>`;
+backToTopBtn.setAttribute('aria-label', 'Kembali ke atas');
+document.body.appendChild(backToTopBtn);
+
+// 2. Tambahkan styling CSS + Animasi Goyang (Bounce)
+const backToTopStyle = document.createElement('style');
+backToTopStyle.textContent = `
+    @keyframes bounceAjib {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-8px) scale(1.05);
+        }
+    }
+
+    #backToTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 45px;
+        height: 45px;
+        background-color: var(--accent, #4f46e5);
+        color: var(--bg-primary, #ffffff);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px) scale(0.8);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #backToTopBtn.show {
+        opacity: 1;
+        visibility: visible;
+        /* Tombol aktif + goyang-goyang naik turun terus menerus */
+        animation: bounceAjib 1.2s ease-in-out infinite, fadeInScale 0.3s forwards;
+    }
+
+    #backToTopBtn:hover {
+        animation: none; /* Berhenti goyang pas di-hover biar fokus */
+        transform: translateY(-6px) scale(1.1);
+        filter: brightness(1.15);
+    }
+`;
+document.head.appendChild(backToTopStyle);
+
+// 3. Logika Muncul/Hilang saat Scroll & Fungsi Klik
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+    } else {
+        backToTopBtn.classList.remove('show');
+    }
+});
+
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
