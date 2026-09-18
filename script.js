@@ -180,7 +180,7 @@ contactForm.addEventListener('submit', (e) => {
         z-index: 1001;
         animation: cardFlipPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     `;
-    successMessage.textContent = '✨ Thx! Pesan kamu berhasil terkirim.';
+    successMessage.textContent = 'Thx! Pesan kamu berhasil terkirim.';
 
     document.body.appendChild(successMessage);
 
@@ -388,3 +388,89 @@ backToTopBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+// ============================================
+// Falling Letters Background Effect (Hujan Huruf Ajib)
+// ============================================
+
+const fallingContainer = document.createElement('div');
+fallingContainer.id = 'fallingLettersContainer';
+document.body.appendChild(fallingContainer);
+
+// Styling untuk container dan huruf yang jatuh
+const fallingStyle = document.createElement('style');
+fallingStyle.textContent = `
+    #fallingLettersContainer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none; /* Biar nggak senggol-senggolan sama klik mouse user */
+        z-index: 0; /* Di bawah konten utama, tapi di atas background biasa */
+    }
+
+    .falling-char {
+        position: absolute;
+        top: -50px;
+        color: var(--accent, #4f46e5);
+        font-family: monospace;
+        font-weight: bold;
+        opacity: 0.15; /* Bikin transparan biar nggak nutupin teks asli */
+        user-select: none;
+        animation: fallDown linear infinite;
+    }
+
+    @keyframes fallDown {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 0.2;
+        }
+        80% {
+            opacity: 0.2;
+        }
+        100% {
+            transform: translateY(105vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(fallingStyle);
+
+// Fungsi untuk membuat huruf jatuh satu per satu
+function createFallingChar() {
+    const charSpan = document.createElement('span');
+    charSpan.className = 'falling-char';
+    
+    // Karakter yang mau dijatuhin (bisa huruf, angka, atau simbol coding)
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789<>":.,?|()&^%@!-+=/{}[];*#$_';
+    charSpan.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+    
+    // Posisi horizontal acak (0% sampai 100% lebar layar)
+    const randomLeft = Math.random() * 100;
+    // Ukuran font acak biar bervariasi (12px - 24px)
+    const randomSize = Math.floor(Math.random() * 12) + 12;
+    // Durasi jatuh acak (kecepatan 3 detik - 8 detik)
+    const randomDuration = Math.random() * 5 + 3;
+    // Delay acak biar jatuhnya nggak barengan
+    const randomDelay = Math.random() * 5;
+
+    charSpan.style.left = `${randomLeft}%`;
+    charSpan.style.fontSize = `${randomSize}px`;
+    charSpan.style.animationDuration = `${randomDuration}s`;
+    charSpan.style.animationDelay = `${randomDelay}s`;
+
+    fallingContainer.appendChild(charSpan);
+
+    // Hapus elemen dari DOM setelah animasinya selesai biar nggak numpuk bikin lag
+    setTimeout(() => {
+        charSpan.remove();
+    }, (randomDuration + randomDelay) * 1000);
+}
+
+// Munculin huruf baru setiap 300 milidetik
+setInterval(createFallingChar, 300);
