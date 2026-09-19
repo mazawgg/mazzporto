@@ -279,6 +279,25 @@ body {
     margin-right: auto;
 }
 
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Agar turun ke bawah secara rapi di layar kecil */
+    gap: 1rem;       /* Jarak antar tombol */
+    justify-content: center; /* Sesuaikan dengan posisi teks hero (center / flex-start) */
+}
+
+/* Pastikan lebar tombol proporsional di mobile */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column; /* Opsional: Jika di HP ingin tombolnya memenuhi lebar layar (full width) secara vertikal */
+        align-items: stretch;
+    }
+    
+    .hero-buttons .cta-button {
+        text-align: center;
+    }
+}
+
 .cta-button {
     display: inline-block;
     padding: 1rem 2.5rem;
@@ -638,6 +657,100 @@ section {
     border-radius: 20px;
     font-size: 0.8rem;
     color: var(--text-secondary);
+}
+
+/* ============================================
+    Certificates Section
+    ============================================ */
+
+.certificates {
+    /* Tambahkan padding atas-bawah yang longgar dan padding kiri-kanan aman untuk HP */
+    padding: var(--spacing-x2, 6rem) var(--spacing-md, 1.5rem); 
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--spacing-md, 1.5rem);
+    margin-top: var(--spacing-md, 1rem);
+}
+
+.certificates-card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background-color: color-mix(in srgb, var(--border) 25%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Support untuk Safari */
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Efek halus naik dan bayangan saat card di-hover secara keseluruhan */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek interaktif saat card di-hover */
+.certificates-card:hover,
+.Participating-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.certificates-content {
+    padding: var(--spacing-md, 1.25rem);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.certificates-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.certificates-description {
+    color: var(--text-secondary);
+    line-height: 1.5; /* Diperbaiki dari 0.18 agar teks terbaca normal */
+    margin-bottom: var(--spacing-md, 1rem);
+    font-size: 0.95rem;
+}
+
+.certificates-p {
+    color: var(--accent);
+    line-height: 1.5;
+    margin-top: auto; /* Memastikan elemen ini selalu terdorong rapi ke bawah card */
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    text-decoration: none;
+    width: fit-content;
+}
+
+.certificates-p:hover {
+    border-radius: 5px;
+    transform: translateX(8px); /* Bergeser ke kanan halus sesuai keinginan sebelumnya */
+}
+
+.Participating {
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-lg, 4rem) 1rem; /* Memberikan ruang/padding aman di HP */
+}
+
+.Participating-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Efek halus naik dan bayangan saat card di-hover secara keseluruhan */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* ============================================
