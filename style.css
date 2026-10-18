@@ -103,7 +103,7 @@ body {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-4px); /* Naik turun tipis setinggi 4 piksel */
+        transform: translateY(-4px);
     }
 }
 
@@ -113,14 +113,13 @@ body {
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
-    /* Jalankan animasi joget tipis nonstop selama 2.5 detik */
     animation: logoSoftBounce 2.5s ease-in-out infinite;
     transition: transform var(--transition-medium), opacity var(--transition-fast);
 }
 
 .logo:hover {
-    /*Saatdi-hover,hentikananimasijogetnyaagardiamdanstabil*/animation-play-state: paused;
-    /*Terapkanefeknyembul(naikdansedikitmembesar)denganmulus*/transform: translateY(-6px) scale(1.05);
+    animation-play-state: paused;
+    transform: translateY(-6px) scale(1.05);
     opacity: 0.9;
     transform: translateY(-3px) scale(1.05);
 }
@@ -181,7 +180,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    perspective: 1000px; /* Memberikan efek kedalaman 3D */
+    perspective: 1000px;
 }
 
 @keyframes iconRotateDown {
@@ -190,15 +189,15 @@ body {
         opacity: 1;
     }
     50% {
-        transform: rotateX(90deg) scale(0.6); /* Menggulung ke bawah dan mengecil di tengah */
+        transform: rotateX(90deg) scale(0.6);
         opacity: 0.2;
     }
     50.1% {
-        transform: rotateX(-90deg) scale(0.6); /* Muncul dari atas dengan posisi terbalik */
+        transform: rotateX(-90deg) scale(0.6);
         opacity: 0.2;
     }
     100% {
-        transform: rotateX(0deg) scale(1); /* Kembali normal dengan ikon baru */
+        transform: rotateX(0deg) scale(1);
         opacity: 1;
     }
 }
@@ -281,15 +280,15 @@ body {
 
 .hero-buttons {
     display: flex;
-    flex-wrap: wrap; /* Agar turun ke bawah secara rapi di layar kecil */
-    gap: 1rem;       /* Jarak antar tombol */
-    justify-content: center; /* Sesuaikan dengan posisi teks hero (center / flex-start) */
+    flex-wrap: wrap;
+    gap: 1rem;       
+    justify-content: center;
 }
 
-/* Pastikan lebar tombol proporsional di mobile */
+
 @media (max-width: 768px) {
     .hero-buttons {
-        flex-direction: column; /* Opsional: Jika di HP ingin tombolnya memenuhi lebar layar (full width) secara vertikal */
+        flex-direction: column;
         align-items: stretch;
     }
     
@@ -308,7 +307,6 @@ body {
     font-weight: 600;
     font-size: 1rem;
     box-shadow: 0 4px 15px var(--shadow);
-    /* Gunakan will-change untuk memaksa GPU merender animasi transform */
     will-change: transform;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -551,15 +549,12 @@ section {
     margin-top: var(--spacing-md);
 }
 
-/* === PERBAIKAN DI SINI === */
 .project-card {
     background-color: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 15px;
     overflow: hidden;
-    /* Mengunci agar gambar tdk tumpah ke luar card */
     height: 100%;
-    /* Agar semua card di row yg sama sejajar tingginya */
     display: flex;
     flex-direction: column;
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
@@ -575,7 +570,6 @@ section {
     width: 100%;
     height: 220px;
     flex-shrink: 0;
-    /* Agar area gambar tidak terkompres saat card memendek */
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     display: flex;
     align-items: center;
@@ -583,11 +577,9 @@ section {
     border-bottom: 1px solid var(--border);
 }
 
-/* === PERBAIKAN DI SINI === */
 .project-image img {
     width: 100%;
     height: 100%;
-    /* Mengikuti height 220px dari kontainer .project-image */
     display: block;
     object-fit: cover;
 }
@@ -619,7 +611,6 @@ section {
 .project-content {
     padding: var(--spacing-md);
     flex-grow: 1;
-    /* Mendorong konten jika card bertambah tinggi secara merata */
     display: flex;
     flex-direction: column;
 }
@@ -642,7 +633,6 @@ section {
     flex-wrap: wrap;
     gap: var(--spacing-xs);
     margin-top: auto;
-    /* Memastikan tag teknologi tetap menempel di bawah walau deskripsi pendek */
 }
 
 .project-link {
@@ -664,7 +654,6 @@ section {
     ============================================ */
 
 .certificates {
-    /* Tambahkan padding atas-bawah yang longgar dan padding kiri-kanan aman untuk HP */
     padding: var(--spacing-x2, 6rem) var(--spacing-md, 1.5rem); 
 }
 
@@ -686,11 +675,9 @@ section {
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* Efek halus naik dan bayangan saat card di-hover secara keseluruhan */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efek interaktif saat card di-hover */
 .certificates-card:hover,
 .Participating-card:hover {
     transform: translateY(-5px);
@@ -712,7 +699,7 @@ section {
 
 .certificates-description {
     color: var(--text-secondary);
-    line-height: 1.5; /* Diperbaiki dari 0.18 agar teks terbaca normal */
+    line-height: 1.5;
     margin-bottom: var(--spacing-md, 1rem);
     font-size: 0.95rem;
 }
@@ -720,7 +707,7 @@ section {
 .certificates-p {
     color: var(--accent);
     line-height: 1.5;
-    margin-top: auto; /* Memastikan elemen ini selalu terdorong rapi ke bawah card */
+    margin-top: auto;
     margin-bottom: 0;
     font-size: 0.95rem;
     transition: transform 0.3s ease, color 0.3s ease;
@@ -733,12 +720,12 @@ section {
 
 .certificates-p:hover {
     border-radius: 5px;
-    transform: translateX(8px); /* Bergeser ke kanan halus sesuai keinginan sebelumnya */
+    transform: translateX(8px);
 }
 
 .Participating {
     background-color: var(--bg-secondary);
-    padding: var(--spacing-lg, 4rem) 1rem; /* Memberikan ruang/padding aman di HP */
+    padding: var(--spacing-lg, 4rem) 1rem;
 }
 
 .Participating-card {
@@ -749,7 +736,6 @@ section {
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* Efek halus naik dan bayangan saat card di-hover secara keseluruhan */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -793,10 +779,9 @@ section {
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
-    /* Mengambil warna dari var(--border) tapi dibuat transparan (misal 15% opacity) */
     background-color: color-mix(in srgb, var(--border) 25%, transparent);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px); /* Support untuk Safari */
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 10px;
     color: var(--text-primary);
@@ -838,10 +823,9 @@ section {
 
 .form-input {
     padding: 0.9rem;
-    /* Mengambil warna dari var(--border) tapi dibuat transparan (misal 15% opacity) */
     background-color: color-mix(in srgb, var(--border) 25%, transparent);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px); /* Support untuk Safari */
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text-primary);
@@ -1039,28 +1023,24 @@ textarea.form-input {
     transform: translateY(0);
 }
 
-/* 1. Animasi untuk Logo di Navbar */
-
 .stat-item {
     transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
 }
 
 .stat-item:hover {
-    transform: translateY(-8px) scale(1.03); /* Kotak statistik naik dan sedikit membesar */
-    box-shadow: 0 10px 30px var(--shadow-hover); /* Bayangan jadi lebih tebal */
-    border-color: var(--accent); /* Border berubah mengikuti warna aksen */
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 30px var(--shadow-hover);
+    border-color: var(--accent);
 }
 
-/* 3. Animasi untuk Judul Section (Tentang Saya, Keahlian Saya, Portfolio Projects) */
 .section-title {
     transition: transform var(--transition-medium);
 }
 
 .section-title:hover {
-    transform: translateX(-50%) translateY(-3px) scale(1.03); /* Tetap di tengah dengan translateX(-50%) tapi sedikit naik */
+    transform: translateX(-50%) translateY(-3px) scale(1.03);
 }
 
-/* 4. Memastikan Card (Keahlian & Projects) juga punya efek nyembul yang konsisten */
 .skill-card,
 .project-card {
     transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
@@ -1068,14 +1048,13 @@ textarea.form-input {
 
 .skill-card:hover,
 .project-card:hover {
-    transform: translateY(-8px) scale(1.01); /* Card naik dan sedikit membesar halus */
+    transform: translateY(-8px) scale(1.01);
 }
 
 /* ============================================
-   Falling Letters Background Effect & Back to Top (Z-Index Adjustment)
+   Falling Letters Background Effect & Back to Top
    ============================================ */
 
-/* Lapisan background hujan huruf (berada di bawah konten, di atas background utama) */
 #fallingLettersContainer {
     position: fixed;
     top: 0;
@@ -1084,16 +1063,14 @@ textarea.form-input {
     height: 100%;
     overflow: hidden;
     pointer-events: none;
-    z-index: 1; /* Di atas background default */
+    z-index: 1
 }
 
-/* Lapisan untuk konten teks/section utama agar tidak tertutup efek jatuh */
 section, .hero, .container, .footer {
     position: relative;
     z-index: 2; 
 }
 
-/* Lapisan tombol Back to Top agar selalu berada di atas semua konten */
 #backToTopBtn {
-    z-index: 999; /* Pastikan mengapung di atas segalanya di bawah navbar */
+    z-index: 999;
 }
